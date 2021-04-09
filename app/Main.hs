@@ -11,9 +11,13 @@ x0 = 300
 y0 = 300
 r = 100
 s = 2 * pi / 5
+pentagonVertices = [( x0 + r * cos (angle i)
+                    , y0 + r * sin (angle i) )
+                    |  i <- [0..4] ]
+    where angle n = n * s - pi / 2
 
 main = blankCanvas 3000 $ \ context -> do
   send context $ do
-    mapM_ (\a -> rect (x0+r*cos(a), y0+r*sin(a), 10, 10)) [i*s - pi/2 | i<- [0..4]]
+    mapM_ (\(x,y) -> rect (x,y,10,10)) pentagonVertices
     stroke ()
 
