@@ -3,8 +3,7 @@ module Main where
 import Graphics.Blank
 
 {-
-   draw 5 small squares on the vertices of a pentagon
-   one of the edge of the pentagon should be parallel with x axis
+   draw the pentagon, joining the vertices with lines
 -}
 
 x0 = 300
@@ -18,6 +17,10 @@ pentagonVertices = [( x0 + r * cos (angle i)
 
 main = blankCanvas 3000 $ \ context -> do
   send context $ do
-    mapM_ (\(x,y) -> rect (x,y,10,10)) pentagonVertices
+    mapM_ (\((x1,y1),(x2,y2)) -> do
+        moveTo (x1,y1)
+        lineTo (x2,y2)
+        )
+        $ zip pentagonVertices ((tail pentagonVertices) ++ [head pentagonVertices])
     stroke ()
 
