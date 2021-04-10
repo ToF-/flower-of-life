@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4b39ece1fcc4ed454ee26fb9f52572029d84ef385a3f58e2388c8e9ded4bbd0a
+-- hash: 695439c443d3e1b6776d83ec6095cc9e7017881879abea2fa1e38590cd3722e8
 
 name:           flower-of-life
 version:        0.1.0.0
@@ -35,6 +35,7 @@ library
   build-depends:
       base >=4.7 && <5
     , blank-canvas
+    , text
   default-language: Haskell2010
 
 executable flower-of-life-exe
@@ -48,6 +49,7 @@ executable flower-of-life-exe
       base >=4.7 && <5
     , blank-canvas
     , flower-of-life
+    , text
   default-language: Haskell2010
 
 test-suite flower-of-life-test
@@ -62,4 +64,5 @@ test-suite flower-of-life-test
       base >=4.7 && <5
     , blank-canvas
     , flower-of-life
+    , text
   default-language: Haskell2010
