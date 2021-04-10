@@ -37,22 +37,17 @@ pentagonVertices = [(x0 + r * cos a
         x0 = coordX origin
         y0 = coordY origin
 
+edge :: Double
+edge = distance (pentagonVertices !! 0) (pentagonVertices !! 1)
+
 pentagonArcs :: [(Coord, Coord, Double, Angle, Angle, Bool)] 
 pentagonArcs = zipWith pentagonArc pentagonVertices startAngles
     where
         pentagonArc (xO,yO) angle = (xO, yO, edge, angle, angle + 3 * pi / 5, False)
 
-edge :: Double
-edge = distance (pentagonVertices !! 0) (pentagonVertices !! 1)
+flowerOfLife :: Canvas ()
+flowerOfLife = mapM_ (\args -> beginPath () >> arc args >> stroke () >> closePath ()) pentagonArcs
 
-main = do
-    blankCanvas 3000 $ \ context -> do
-        send context $ do
-            mapM_ (\args -> do
-                beginPath ()
-                arc args
-                stroke ()
-                closePath ()
-                  ) pentagonArcs
+main = blankCanvas 3000 $ \ context -> send context flowerOfLife
 
 
