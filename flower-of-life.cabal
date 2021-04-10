@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 695439c443d3e1b6776d83ec6095cc9e7017881879abea2fa1e38590cd3722e8
+-- hash: eacb401dbecd1b98476c1d548d088f38892e3149d66a81eaffebb422527608fd
 
 name:           flower-of-life
 version:        0.1.0.0
@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Geometry
   other-modules:
       Paths_flower_of_life
   hs-source-dirs:
@@ -56,6 +56,7 @@ test-suite flower-of-life-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      GeometrySpec
       Paths_flower_of_life
   hs-source-dirs:
       test
@@ -64,5 +65,6 @@ test-suite flower-of-life-test
       base >=4.7 && <5
     , blank-canvas
     , flower-of-life
+    , hspec
     , text
   default-language: Haskell2010
