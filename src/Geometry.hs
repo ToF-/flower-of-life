@@ -12,6 +12,10 @@ type Angle = Double
 type Coord = Double
 type Radius= Double
 
+coordX,coordY :: Point -> Coord
+coordX = fst
+coordY = snd
+
 pentagon :: Point -> Radius -> Angle -> Pentagon
 pentagon origin radius alpha = Pentagon origin radius alpha
 
@@ -38,3 +42,15 @@ distance (x0,y0) (x1,y1) = sqrt (dx * dx + dy * dy)
     where
         dx = x0 - x1
         dy = y0 - y1
+
+outerPentagons :: Pentagon -> [Pentagon]
+outerPentagons (Pentagon (x0,y0) radius alpha) = map outerPentagon (pentagonAngles alpha)
+    where
+    outerPentagon :: Angle -> Pentagon
+    outerPentagon phi = Pentagon (x1,y1) radius (phi + 2*pi/10)
+        where
+        x1 = x0 + 2*s * cos (phi + 2*pi/10)
+        y1 = y0 + 2*s * sin (phi + 2*pi/10)
+        s = sqrt (radius ^ 2 - t ^ 2)
+        t = edge / 2
+        edge = radius * sqrt ((5 - (sqrt 5)) / 2)

@@ -3,6 +3,7 @@ module GeometrySpec
 
 import Test.Hspec
 import Geometry
+import ShouldBeApprox
 
 spec :: SpecWith ()
 spec = do
@@ -35,3 +36,16 @@ spec = do
             let b = (arcs p) !! 1
             arcOrigin b `shouldBe` (vertices p) !! 1
             arcStartAngle b `shouldBe`(2*pi/5 + pi/2 + pi/5) 
+
+    describe "outer pentagons" $ do
+        it "are symmetric to the center with respect to edges" $ do
+            let r = 1
+            let p = pentagon (100,100) r 0
+            let (Pentagon (x,y) _ phi) = (outerPentagons p) !! 0
+            let vs = vertices p
+            let e = distance (vs !! 0) (vs !! 1)
+            let t = e / 2
+            let s = sqrt (r^2 - t^2)
+            distance (x,y) (100,100) `shouldBeApprox` (2 * s)
+            x `shouldBeApprox` (100 + 2*s * cos (2*pi / 10))
+            y `shouldBeApprox` (100 + 2*s * sin (2*pi / 10))

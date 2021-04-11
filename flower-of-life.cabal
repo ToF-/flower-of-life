@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: eacb401dbecd1b98476c1d548d088f38892e3149d66a81eaffebb422527608fd
+-- hash: b105f996993edac1e7538ea81ecde36330d97acb471e7ca0a85b87e1cb8f2804
 
 name:           flower-of-life
 version:        0.1.0.0
@@ -57,6 +57,7 @@ test-suite flower-of-life-test
   main-is: Spec.hs
   other-modules:
       GeometrySpec
+      ShouldBeApprox
       Paths_flower_of_life
   hs-source-dirs:
       test
